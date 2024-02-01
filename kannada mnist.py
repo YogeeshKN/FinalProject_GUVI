@@ -13,10 +13,15 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 
 # Load the dataset
 def load_data():
-    train_data = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\X_kannada_MNIST_train.npz')['arr_0']
-    test_data = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\X_kannada_MNIST_test.npz')['arr_0']
+    train_data1 = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\X_kannada_MNIST_train.npz')['arr_0']
+    test_data1 = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\X_kannada_MNIST_test.npz')['arr_0']
     train_labels = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\y_kannada_MNIST_train.npz')['arr_0']
     test_labels = np.load('E:\GUVI Projects\Kannada_MNIST_datataset_paper\Kannada_MNIST_npz\Kannada_MNIST\y_kannada_MNIST_test.npz')['arr_0']
+    nsamples, nx, ny = train_data1.shape
+    train_data = train_data1.reshape((nsamples,nx*ny))
+    msamples, mx, my = test_data1.shape
+    test_data = test_data1.reshape((msamples,mx*my))
+
     return train_data, test_data, train_labels, test_labels
 
 # Apply PCA
